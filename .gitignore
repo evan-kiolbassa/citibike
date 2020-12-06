@@ -1,0 +1,9 @@
+*.csv
+.Rhistory
+*.png
+*.jpg
+.DS_Store
+.RData
+/__pycache__
+.Rproj.user
+.ipynb.checkpoints
