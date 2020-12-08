@@ -1,0 +1,59 @@
+Last login: Tue Dec  8 09:49:16 on ttys001
+(base) danielchoy@Daniels-MBP ~ % cd Documents                                                   
+(base) danielchoy@Daniels-MBP Documents % cd Projects
+(base) danielchoy@Daniels-MBP Projects % cd citibike
+(base) danielchoy@Daniels-MBP citibike % ls
+Capstone Cleaning.ipynb		Citibike.db			Untitled1.ipynb			data
+CitiBike First Look.ipynb	README.md			citibike.sqlite			load.py
+Citibike EDA.ipynb		Untitled.ipynb			citibike.sqlite-journal		stationdata
+(base) danielchoy@Daniels-MBP citibike % cd data
+(base) danielchoy@Daniels-MBP data % cd 'rider data'
+cd: no such file or directory: rider data
+(base) danielchoy@Daniels-MBP data % ls
+JC-201509-citibike-tripdata.csv.zip	JC-201707-citibike-tripdata.csv.zip	JC-201905-citibike-tripdata.csv.zip
+JC-201510-citibike-tripdata.csv.zip	JC-201708 citibike-tripdata.csv.zip	JC-201906-citibike-tripdata.csv.zip
+JC-201511-citibike-tripdata.csv.zip	JC-201709-citibike-tripdata.csv.zip	JC-201907-citibike-tripdata.csv.zip
+JC-201512-citibike-tripdata.csv.zip	JC-201710-citibike-tripdata.csv.zip	JC-201908-citibike-tripdata.csv.zip
+JC-201601-citibike-tripdata.csv.zip	JC-201711-citibike-tripdata.csv.zip	JC-201909-citibike-tripdata.csv.zip
+JC-201602-citibike-tripdata.csv.zip	JC-201712-citibike-tripdata.csv.zip	JC-201910-citibike-tripdata.csv.zip
+JC-201603-citibike-tripdata.csv.zip	JC-201801-citibike-tripdata.csv.zip	JC-201911-citibike-tripdata.csv.zip
+JC-201604-citibike-tripdata.csv.zip	JC-201802-citibike-tripdata.csv.zip	JC-201912-citibike-tripdata.csv.zip
+JC-201605-citibike-tripdata.csv.zip	JC-201803-citibike-tripdata.csv.zip	JC-202001-citibike-tripdata.csv.zip
+JC-201606-citibike-tripdata.csv.zip	JC-201804-citibike-tripdata.csv.zip	JC-202002-citibike-tripdata.csv.zip
+JC-201607-citibike-tripdata.csv.zip	JC-201805-citibike-tripdata.csv.zip	JC-202003-citibike-tripdata.csv.zip
+JC-201608-citibike-tripdata.csv.zip	JC-201806-citibike-tripdata.csv.zip	JC-202004-citibike-tripdata.csv.zip
+JC-201609-citibike-tripdata.csv.zip	JC-201807-citibike-tripdata.csv.zip	JC-202005-citibike-tripdata.csv.zip
+JC-201610-citibike-tripdata.csv.zip	JC-201808-citibike-tripdata.csv.zip	JC-202006-citibike-tripdata.csv.zip
+JC-201611-citibike-tripdata.csv.zip	JC-201809-citibike-tripdata.csv.zip	JC-202007-citibike-tripdata.csv.zip
+JC-201612-citibike-tripdata.csv.zip	JC-201810-citibike-tripdata.csv.zip	JC-202008-citibike-tripdata.csv.zip
+JC-201701-citibike-tripdata.csv.zip	JC-201811-citibike-tripdata.csv.zip	JC-202009-citibike-tripdata.csv.zip
+JC-201702-citibike-tripdata.csv.zip	JC-201812-citibike-tripdata.csv.zip	JC-202010-citibike-tripdata.csv.zip
+JC-201703-citibike-tripdata.csv.zip	JC-201901-citibike-tripdata.csv.zip	JC-202011-citibike-tripdata.csv.zip
+JC-201704-citibike-tripdata.csv.zip	JC-201902-citibike-tripdata.csv.zip	ride data
+JC-201705-citibike-tripdata.csv.zip	JC-201903-citibike-tripdata.csv.zip
+JC-201706-citibike-tripdata.csv.zip	JC-201904-citibike-tripdata.csv.zip
+(base) danielchoy@Daniels-MBP data % cd 'ride data'
+(base) danielchoy@Daniels-MBP ride data % head -1 201306-citibike-tripdata.csv > all_combined.csv 
+(base) danielchoy@Daniels-MBP ride data % tail -n +2 -q *.csv >> all_combined.csv
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
