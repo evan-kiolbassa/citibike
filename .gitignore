@@ -1,3 +1,4 @@
+*.pickle
 *.csv
 .Rhistory
 *.png
@@ -7,3 +8,6 @@
 /__pycache__
 .Rproj.user
 .ipynb.checkpoints
+*.gz
+*.db
+
