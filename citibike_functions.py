@@ -3,11 +3,16 @@ import pandas as pd
 import numpy as np
 import re
 
-
-import pandas as pd
-
 # Function to process station data for a given year
 def process_stationdata(year):
+	"""This function will process citibke station data that was obtained from www.theopenbus.com/raw-data.
+    The data set ranges from March 2015 to April 2019. The original datasets are tab-deliminated datasets with
+    inconsistent column numbers and names. The data was preprocessed in the terminal command line by merging the
+    datasets in a yearly level by running the following command: cat *.csv > merged.csv.
+    The function processes each station data for a given year by slitting the tab-delimitors and making
+    consistent column names. The script below then combines the data from all years into a single station.csv
+    data file.
+    """
     df = pd.read_csv(f"../data/stationdata/merged{year}.csv")
 
     # Generate the list of columns to be used
@@ -32,12 +37,12 @@ def process_stationdata(year):
     df_expand.to_csv(f"../data/stationdata/stations{year}.csv", index = False)    
 
 
-
-
-
-
-
 def cleaning_stationdata(df):
+	"""This function will clean the station data from that was merged in Linux command lines.
+    The data cleaning function contains several new features including day of week, hour, and dock status.
+    Dock status is calculated as available bikes / total docks. Running this function will ultimately provide
+    a combined csv file called stations_cleaned.csv
+    """
     df.dropna(inplace = True)
     df.drop(df[df['dock_id'].apply(lambda x: isinstance(x, str))].index, inplace = True)
     df = df[df['tot_docks'] < 500]
@@ -116,7 +121,6 @@ def cleaning_stationdata(df):
     
     # Create a new csv file
     df.to_csv("../data/stations_cleaned.csv", index = False)
-
 
 
 
@@ -207,3 +211,53 @@ def to_milesperhour(num):
     convert = (num * 3600)/(1000 * 1.6)
     return convert
 
+
+def cleaning_ridersdata(df):
+    
+    """This function will clean the riders data.
+    The data cleaning function contains several new features.
+    """
+    
+    df.starttime.astype('M8[us]')
+    df.stoptime.astype('M8[us]')
+    
+    # Drop missing values
+    df = df.dropna(subset=['start station id', 'end station id']).reset_index()
+    
+    # create year column
+    df['year'] = df.starttime.dt.year
+    print('completed year column')
+    
+    # create date column
+    df['start_date'] = df.starttime.dt.date
+    df['stop_date'] = df.stoptime.dt.date
+    print('completed date column')
+    
+    # create hour column
+    df['start_hour'] = df.starttime.dt.hour
+    df['stop_hour'] = df.stoptime.dt.hour
+    print('completed hour column')
+    
+    # create minutes column
+    df['start_min'] = df.starttime.dt.minute
+    df['stop_min'] = df.starttime.dt.minute
+    print('completed minutes column')
+    
+    # For easier computation and analysis, we decided to round the minutes by 20 minutes time frame
+    df['start_min'] = df['start_min'].apply(lambda x: '00' if x < 20 else '20' if x < 40 else '40')
+    df['stop_min'] = df['stop_min'].apply(lambda x: '00' if x < 20 else '20' if x < 40 else '40')
+    
+    
+    # create season column
+    df['season'] = df.starttime.dt.month.apply(lambda x: 'winter' if x <= 2 else 'spring' if x <= 5 else \
+    'summer' if x <= 8 else 'fall' if x <= 11 else 'winter')
+    print('completed season column')
+    
+    # create day of week column
+    df['dayofweek'] = df['starttime'].dt.weekday.apply(lambda x: 'Monday' if x == 0 else 'Tuesday' if x==1 else \
+    'Wednesday'if x == 2 else 'Thursday' if x == 3 else 'Friday' if x == 4 else 'Saturday' if x == 5 else 'Sunday')
+    print('completed week column')
+    
+    # create interval column
+    df['start_interval'] = df.apply(lambda x: str(x['start_hour']) + ":" + str(x['start_min']), axis=1)
+    df['stop_interval'] = df.apply(lambda x: str(x['stop_hour']) + ":" + str(x['stop_min']), axis=1)
