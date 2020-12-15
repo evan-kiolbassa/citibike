@@ -120,3 +120,90 @@ def cleaning_stationdata(df):
 
 
 
+def clean_weatherdata(df):
+    """This function will clean the weather data from any given year or years (the merged weather data)
+    Weather data was obtained from NOAA( National Cceanic and Atmospheric Administration ) 
+    https://www.ncei.noaa.gov/data/global-hourly/archive/csv/.
+    Additional websites were also used as references in order to interpret the numbers from the data and to
+    engineer new features such as windy and rainy. The column windy and its values (breeze, gale, force...)
+    were all based on information from NOAA https://www.weather.gov/pqr/wind. 
+    https://www.visualcrossing.com/resources/documentation/weather-data/how-we-process-integrated-surface-database-historical-weather-data/
+    was used to interpret the numbers of the data.
+    """
+    # Make a copy
+    nyweather= df.copy()
+    
+    # Select the columns that will be used
+    nyweather = nyweather[['DATE', 'SOURCE', 'LATITUDE', 'LONGITUDE', 'ELEVATION', 'NAME', 'WND', 'TMP',
+             'DEW', 'SLP', 'AA1','AA2']]
+    
+    # Clean DATE column
+    nyweather['DATE'] = nyweather['DATE'].str.replace('T', ' ')
+    
+    # Clean TMP (temperature) column. Please refer to 
+    # Interpreting the numbers are based on 
+    #https://www.visualcrossing.com/resources/documentation/weather-data/how-we-process-integrated-surface-database-historical-weather-data/
+
+    nyweather['TMP'] = nyweather['TMP'].astype(str)
+    nyweather['TMP'] = nyweather['TMP'].str.slice(0, -2)
+    nyweather['TMP'] = nyweather['TMP'].str.replace('+','')
+    nyweather['TMP'] = nyweather['TMP'].astype(int)
+    nyweather['TMP'] = nyweather['TMP']/10
+    
+    print('complete part 1')
+    
+    # Clean WND column
+    # Please refer to https://www.weather.gov/pqr/wind
+    nyweather['WND'] = nyweather['WND'].astype(str)
+    nyweather = pd.concat([nyweather, nyweather.WND.str.split(',', expand = True)],1)
+    nyweather = nyweather.rename(columns={3:'wind_speed'})
+    nyweather['wind_speed'] = nyweather['wind_speed'].astype(int)
+    nyweather['wind_speed'] = nyweather['wind_speed']/10
+    nyweather['wind_speed'] = nyweather['wind_speed'].map(to_milesperhour)
+    
+    # Engineered a new feature called windy
+    nyweather['windy'] = nyweather['wind_speed'].apply(lambda x: 'calm' if x < 4 else 'breeze' if x < 12 else \
+                                        'moderate breeze' if x < 24 else 'strong breeze' if x < 31 else \
+                                        'gale' if x < 63 else 'storm force')
+    nyweather = nyweather[['DATE', 'SOURCE', 'LATITUDE', 'LONGITUDE', 'ELEVATION', 'NAME', 'WND', 'TMP',\
+                           'DEW', 'SLP', 'AA1','AA2', 'wind_speed', 'windy']]
+    
+    print('complete part 2')
+    
+    # Clean the AA1 column that has precipitation information
+    nyweather['AA1'] = nyweather['AA1'].fillna('0,0,0,0')
+    nyweather['AA1'] = nyweather['AA1'].astype(str)
+    nyweather = pd.concat([nyweather, nyweather.AA1.str.split(',', expand = True)],1)
+    nyweather = nyweather.rename(columns={1:'precipitation'})
+    nyweather['precipitation'] = nyweather['precipitation'].astype(int)
+    nyweather['precipitation'] = nyweather['precipitation']/10
+    nyweather = nyweather[['DATE', 'SOURCE', 'LATITUDE', 'LONGITUDE', 'ELEVATION', 'NAME', 'WND', 'TMP',\
+                           'DEW', 'SLP', 'wind_speed', 'windy', 'precipitation']]
+    
+    # Engineered a new feature called rainy
+    nyweather['rainy'] = nyweather['precipitation'].apply(lambda x: 'rainy' if x > 0 else 'not rainy')
+    
+    
+    # Clean DATE column
+    # Generate new features - month, date, hour and month2
+    nyweather['DATE'] = nyweather['DATE'].apply(lambda x: datetime.strptime(x, '%Y-%m-%d %H:%M:%S'))
+    nyweather['month'] = nyweather.DATE.dt.month
+    nyweather['date'] = nyweather.DATE.dt.date
+    nyweather['hour'] = nyweather.DATE.dt.hour
+    nyweather['month2'] = nyweather.DATE.dt.month.apply(lambda x: 'Jan' if x == 1 else 'Feb' if x == 2 else \
+    'Mar' if x == 3 else 'Apr' if x == 4 else 'May' if x == 5 else 'Jun' if x == 6 else 'Jul' if x == 7 else \
+    'Aug' if x == 8 else 'Sep' if x == 9 else 'Oct' if x == 10 else 'Nov' if x == 11 else 'Dec' )
+    
+    # Generate cleaned dataframe
+    return nyweather
+
+
+
+
+def to_milesperhour(num):
+    """A function to convert wind speed from meters/second to miles/hour. The conversion is done by using the 
+    above formula
+    """
+    convert = (num * 3600)/(1000 * 1.6)
+    return convert
+
