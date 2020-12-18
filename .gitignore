@@ -1,3 +1,5 @@
+*.save
+*.sav
 *-checkpoint.ipynb
 *.pickle
 *.csv
