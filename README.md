@@ -57,7 +57,7 @@ This project will:
   - EDA_dockstation.ipynb, EDA_dock_bk.ipynb, and Dock Stations Status EDA.ipynb analyzes the dock station
   - EDA.ipynb and EDA_rider_bk.ipynb analyzes CitiBike's riders behavior
   - Time Series of Dock Status.ipynb and Inventory Descriptive Time Series.ipynb analyzes Citibike's inventory and riders behavior in terms of time series
-- **Models
+- **Models**
   - This project looks into several different machine learning models including K means Clustering, Random Forest Classification, Logistic Regression, and Time Series Analysis
   - Citibike Time Series.ipynb: Time Series Model
   - Distance.ipynb: finding all the possible *Manhattan* distance between all stations
@@ -68,7 +68,7 @@ This project will:
   - predictions.ipynb: brings all the random forest classification models to predict dock station's depletion status and incoming and outgoing bike demands
   - clf.pkl, clf_in.pkl, clf_out.pkl: Random forest classification models that are pickled. These files were not uploaded in the repository due its lage size 
   - 
-- **data
+- **data**
   - combined.csv: All Riders Data 
   - distance.csv (Haversine Distance)
   - distance2.csv (Manhattan Distance)
@@ -80,5 +80,14 @@ This project will:
   - riders_cleaned.csv.gz: compressed merged and cleaned riders data
   - monthly_weather.csvp: monthly weather aggregated by month and day
 - citibike_functions.py: containg all the functions used during data preprocessing
+
+## Exploratory Data Analysis
+
+Please refer to our EDA folder
+
+## Machine Learning
+
+Please refer to our Models folder
+
 
 
