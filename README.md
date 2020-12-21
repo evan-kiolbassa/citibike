@@ -34,16 +34,51 @@ This project will:
 2. **Station Data**: Dock-station bike stocking information from the google-drive of: https://www.theopenbus.com/raw-data.html
 3. **Weather Data**: Local hourly weather information from **noaa** at: https://www.ncei.noaa.gov/data/global-hourly/archive/csv/
 
+![Screen Shot 2020-12-20 at 7 54 53 PM](https://user-images.githubusercontent.com/29543481/102729113-4ebb7800-42fd-11eb-85ca-15d0e08c8232.png)
 
 
 ## Data Preprocessing
 
 1. Merging files: The Data Preprocessing folder and the data folder have all the necessary jupyter notebooks, python files, and bash scripts to merge and clean the riders data, station data, and the weather data indicated above. Because the data above are all saved separately either by a monthly level or yearly level, it is necessary to merge all the files into one csv files before cleaning the data. This step was done in Linux command lines using a bash script in order to merge all the files without the header.
 
-2. Cleaningi the data: All data cleaning-related functions can be found in the citibike_functions.py. However, in order to clean each data, please refer to each Jupyter Notebook to clean each data file. To clean the riders data, refer to *ridersdata_clean.ipynb* and to clean the dock station data, refer to *stationdata_cleaning.ipynb*
+2. Cleaning the data: All data cleaning-related functions can be found in the citibike_functions.py. However, in order to clean each data, please refer to each Jupyter Notebook to clean each data file. To clean the riders data, refer to *ridersdata_clean.ipynb* and to clean the dock station data, refer to *stationdata_cleaning.ipynb*
+
+3. Downsampling
 
 
-## Exploratory Data Analysis
+## Project Directory
 
+- **Data Preprocessing**: contains all the jupyter notebooks and python files on preprocessing the data above
+  - The Data Preprocessing folder and the data folder have all the necessary jupyter notebooks, python files, and bash scripts to merge and clean the riders data, station data, and the weather data indicated above. Because the data above are all saved separately either by a monthly level or yearly level, it is necessary to merge all the files into one csv files before cleaning the data. This step was done in Linux command lines using a bash script in order to merge all the files without the header.
+  - merge files either merge the datasets inside the notebook or have functions that merge the datasets
+  - clean files cleans the merged dataframes. Inside the jupyter notebook, you can find multiple functions that cleans the dataset
+- **EDA**: Exploratory Data Analysis folder contains all the EDA files on riders data, dock station data, and weather data
+  - EDA_Weather.ipynb analyzes the weather's impact on riders behavior and dock station status quo
+  - EDA_dockstation.ipynb, EDA_dock_bk.ipynb, and Dock Stations Status EDA.ipynb analyzes the dock station
+  - EDA.ipynb and EDA_rider_bk.ipynb analyzes CitiBike's riders behavior
+  - Time Series of Dock Status.ipynb and Inventory Descriptive Time Series.ipynb analyzes Citibike's inventory and riders behavior in terms of time series
+- **Models
+  - This project looks into several different machine learning models including K means Clustering, Random Forest Classification, Logistic Regression, and Time Series Analysis
+  - Citibike Time Series.ipynb: Time Series Model
+  - Distance.ipynb: finding all the possible *Manhattan* distance between all stations
+  - Downsampling.ipynb and Downsampling_all_fields.ipynb: Jupyter notebook that downsamples some of the large datasets for the model
+  - logistic_regression.bk.ipynb: Logistic Regression Model
+  - model_clustering_hierarchy_kmeans_dock_stn_bk.ipynb and model_clustering_hierarchy_kmeans_rider_bk.ipynb: Clustering Model
+  - random forest classifier.ipynb, random forest classifier2.ipynb - Random forest classification model
+  - predictions.ipynb: brings all the random forest classification models to predict dock station's depletion status and incoming and outgoing bike demands
+  - clf.pkl, clf_in.pkl, clf_out.pkl: Random forest classification models that are pickled. These files were not uploaded in the repository due its lage size 
+  - 
+- **data
+  - combined.csv: All Riders Data 
+  - distance.csv (Haversine Distance)
+  - distance2.csv (Manhattan Distance)
+  - downsampled_rider.csv: Riders data downsampled
+  - final_weather: merged and cleaned weather data
+  - incoming.csv.gz: compressed incoming bike demand dataframe
+  - outgoing.csv.gz: compressed outgoing bike demand dataframe
+  - stations_cleaned.csv.gz: compressed merged and cleaned stations data
+  - riders_cleaned.csv.gz: compressed merged and cleaned riders data
+  - monthly_weather.csvp: monthly weather aggregated by month and day
+- citibike_functions.py: containg all the functions used during data preprocessing
 
 
