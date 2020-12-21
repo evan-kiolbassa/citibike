@@ -4,15 +4,20 @@
 
 ## Introduction
 
-This part is the introduction
+In May 2013, New York City launched Citibike, one of the largest bike-share shsytem in United States. Today, Citibike in NYC consists of more than 1200 + active dock stations that has expanded to Brooklyn, and Jersey City. As of September 2020, despite of COVID-19, there are more than 40,000 trips every day with a total of 113M total trips taken since it was first launched. Despite CitiBike's growth, the service is not always satisfactory. For example, the massive use of the service by commuter results into the quick depletion stalls in the dock stations in the morning and the rapid exhaustion of the available stalls in the docking stations in the afternoon so that users cannot deposit more bikes. This disparity highlights the importance of finding efficient ways to manage the bike-sharing network in NYC. 
+
+An effective way to enhance CitBike system is relocating bikes from overcrowded stations to those with a shortage of bikes, which is known as rebalancing. There are multiple ways to do this: One, CitiBike can deploy a fleet of trucks to pick up and drop off bikes at different stations to balance the network. Two, Citibike can operate a bike train that carrys 12-16 bikes to pick up and drop off bikes in narrow neighborhoods. Three, CitiBike can employ bike riders to to move around bikes to improve the availability of bikes and docks. CitiBike is currently utilizing these methods (visit: https://www.citibikenyc.com/blog/rebalancing-the-citi-bike-system for more information) in order to solve bike/dock station availability issues. However, CitiBike is still being critized for its poor rebalancing strategy and management. 
+
+In order to improve the current CitiBike's rebalancing strategy, this project will address two topics: Understanding and Analyzing CitiBike's Riders data and inventory status and predicting the demand for bikes and stalls in the docking stations in different lcations to relocate the bikes in order to best satisfy customer's demand.  
 
 ## Problem
 
-Citibke has been constantly critized for its poor bike and dock station availability that can cause issues with customer retention
-
 ![Screen Shot 2020-12-13 at 3 03 41 PM](https://user-images.githubusercontent.com/29543481/102022399-9d44a180-3d54-11eb-90d3-68fd92e8dc46.png)
 
-Ever since Citibike was introduced, the bike share system has been constantly criticized by its cusotmer for it sppor mehtod of stock redistribution in order to equalize the supply of bikes and stations. 
+*Citibke has been constantly critized for its poor bike and dock station availability that can cause issues with customer retention*
+
+
+Ever since Citibike was introduced, the bike share system has been constantly criticized by its cusotmer for its poor mehtod of stock redistribution in order to equalize the supply of bikes and stations. The massive use of bike-share system during commuting time results into quick depletion of the stations in residential areas in the morning and the rapid depletion of the stations in commercial areas in the afternoon. These unsatifactory feedbacks can be reflected on many of recent CitiBike-related tweets and articles. In addition, tourists disappointment can be reflected by the high rate of negative reviews of the service on TripAdvisor (for more information, visit: https://www.tripadvisor.com/Attraction_Review-g60763-d7071917-Reviews-Citi_Bike-New_York_City_New_York.html). 
 
 ## Objective
 
