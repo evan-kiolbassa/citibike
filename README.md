@@ -12,7 +12,7 @@ In order to improve the current CitiBike's rebalancing strategy, this project wi
 
 ## Problem
 
-![Screen Shot 2020-12-13 at 3 03 41 PM](https://user-images.githubusercontent.com/29543481/102022399-9d44a180-3d54-11eb-90d3-68fd92e8dc46.png)
+![Screen Shot 2020-12-20 at 7 52 34 PM](https://user-images.githubusercontent.com/29543481/102729067-15830800-42fd-11eb-8728-112a160b9c98.png)
 
 *Citibke has been constantly critized for its poor bike and dock station availability that can cause issues with customer retention*
 
@@ -33,6 +33,7 @@ This project will:
 1. **Riders Data**: The anonymous trip system data found at: https://www.citibikenyc.com/system-data
 2. **Station Data**: Dock-station bike stocking information from the google-drive of: https://www.theopenbus.com/raw-data.html
 3. **Weather Data**: Local hourly weather information from **noaa** at: https://www.ncei.noaa.gov/data/global-hourly/archive/csv/
+
 
 
 ## Data Preprocessing
